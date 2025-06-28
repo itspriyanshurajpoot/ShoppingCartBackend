@@ -11,5 +11,6 @@ public class ProductRequestDTO {
     private double price;
     private int stockQuantity;
     private Boolean isActive;
-    private String category; // Assuming categoryId is used to link to a Category entity
+    private String category;
+    private String brand;
 }

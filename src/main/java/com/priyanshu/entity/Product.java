@@ -25,6 +25,7 @@ public class Product {
     private double price;
     private int stockQuantity;
     private Boolean isActive;
+    private String brand;
 
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "categoryId")

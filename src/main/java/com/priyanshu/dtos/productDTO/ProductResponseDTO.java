@@ -19,6 +19,7 @@ public class ProductResponseDTO {
     private double price;
     private int stockQuantity;
     private Boolean isActive;
+    private String brand;
     private CategoryResponseDTO category;
 
     private List<ProductImageResponseDTO> productImages;
