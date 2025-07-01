@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Blob;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -20,6 +22,9 @@ public class ProductImage {
     private String imageUrl;
     private String imageName;
     private String imageType;
+
+    @Lob
+    private Blob image;
 
 
     @ManyToOne

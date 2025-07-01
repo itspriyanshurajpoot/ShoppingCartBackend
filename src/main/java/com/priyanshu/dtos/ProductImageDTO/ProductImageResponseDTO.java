@@ -8,6 +8,4 @@ import lombok.Setter;
 public class ProductImageResponseDTO {
     private Long productImageId;
     private String imageUrl;
-    private String imageName;
-    private String imageType;
 }

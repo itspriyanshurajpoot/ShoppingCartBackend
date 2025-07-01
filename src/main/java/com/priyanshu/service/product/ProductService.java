@@ -29,7 +29,12 @@ public class ProductService implements IProductService {
 
         // check if category exists
         Category category = categoryRepository.findByNameIgnoreCase(productRequestDTO.getCategory())
-                .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
+                .orElseGet(() -> {
+                    Category newCategory = new Category();
+                    newCategory.setName(productRequestDTO.getCategory());
+                    newCategory.setDescription(productRequestDTO.getCategory() + " description");
+                    return categoryRepository.save(newCategory);
+                });
 
         // Set the category to the product
         product.setCategory(category);
