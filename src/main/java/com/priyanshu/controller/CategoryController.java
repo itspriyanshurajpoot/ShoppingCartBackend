@@ -5,6 +5,8 @@ import com.priyanshu.dtos.categoryDTO.CategoryRequestDTO;
 import com.priyanshu.dtos.categoryDTO.CategoryResponseDTO;
 import com.priyanshu.response.ApiResponse;
 import com.priyanshu.service.category.ICategoryService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +17,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/category")
 @AllArgsConstructor
+@Tag(name = "Category Controller")
 public class CategoryController {
 
     private final ICategoryService categoryService;
 
+    @Operation(summary = "Add Category")
     @PostMapping("/create-category")
     public ResponseEntity<ApiResponse> createCategory(@RequestBody CategoryRequestDTO request) {
 
@@ -29,6 +33,8 @@ public class CategoryController {
          return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+
+    @Operation(summary = "Get category by id")
     @GetMapping("/get/{id}")
     public ResponseEntity<ApiResponse> getCategoryById(@PathVariable Long id) {
         ApiResponse response = new ApiResponse();
@@ -40,6 +46,7 @@ public class CategoryController {
     }
 
     @GetMapping("/get-all")
+    @Operation(summary = "Get All Category")
     public ResponseEntity<ApiResponse> getAllCategories() {
         ApiResponse response = new ApiResponse();
         response.setMessage("All categories retrieved successfully");
@@ -51,6 +58,7 @@ public class CategoryController {
     }
 
     @PutMapping("/update/{id}")
+    @Operation(summary = "Update category by id")
     public ResponseEntity<ApiResponse> updateCategory(@PathVariable Long id, @RequestBody CategoryRequestDTO request) {
         ApiResponse response = new ApiResponse();
         response.setMessage("All categories retrieved successfully");
@@ -61,6 +69,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @Operation(summary = "Delete Category By id")
     public ResponseEntity<ApiResponse> deleteCategory(@PathVariable Long id) {
         categoryService.deleteCategory(id);
         ApiResponse response = new ApiResponse();

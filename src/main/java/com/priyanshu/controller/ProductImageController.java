@@ -25,7 +25,7 @@ public class ProductImageController {
 
     // add product image
     @PostMapping
-    public ResponseEntity<ApiResponse> addProductImage(Long productId, List<MultipartFile> imageFile) throws SQLException, IOException {
+    public ResponseEntity<ApiResponse> addProductImage(@RequestParam Long productId, @RequestBody List<MultipartFile> imageFile) throws SQLException, IOException {
         List<ProductImageResponseDTO> response = productImageService.addProductImage(productId, imageFile);
 
         ApiResponse apiResponse = ApiResponse.builder()
@@ -40,7 +40,7 @@ public class ProductImageController {
 
     // delete product image by id
     @DeleteMapping
-    public ResponseEntity<ApiResponse> deleteProductImage(Long productImageId) {
+    public ResponseEntity<ApiResponse> deleteProductImage(@RequestParam("product-id") Long productImageId) {
         productImageService.deleteProductImage(productImageId);
 
         ApiResponse apiResponse = ApiResponse.builder()
@@ -52,8 +52,8 @@ public class ProductImageController {
     }
 
     // get product image by id
-    @GetMapping
-    public ResponseEntity<ByteArrayResource> getProductImageById(@RequestParam Long productImageId) throws SQLException {
+    @GetMapping("/get-image/{id}")
+    public ResponseEntity<ByteArrayResource> getProductImageById(@PathVariable("id") Long productImageId) throws SQLException {
         ProductImage productImage = productImageService.getProductImageById(productImageId);
 
         ByteArrayResource resource = new ByteArrayResource(productImage.getImage().getBytes(1, (int) productImage.getImage().length()));
