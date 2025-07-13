@@ -2,15 +2,15 @@ package com.priyanshu.dtos.productDTO;
 
 import com.priyanshu.dtos.ProductImageDTO.ProductImageResponseDTO;
 import com.priyanshu.dtos.categoryDTO.CategoryResponseDTO;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ProductResponseDTO {
 
     private Long productId;

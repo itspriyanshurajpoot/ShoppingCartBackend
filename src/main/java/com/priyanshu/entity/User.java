@@ -2,8 +2,10 @@ package com.priyanshu.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.time.Instant;
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,6 +32,10 @@ public class User {
 
     @Column(nullable = false, updatable = false)
     private Instant registeredAt;
+
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<CartItem> cartItems;
 
 
     @PrePersist
